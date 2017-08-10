@@ -1,0 +1,7 @@
+[25-Nov-2016 16:47:44 UTC] PHP Warning:  phpinfo() has been disabled for security reasons in /home/yhrbpfsr/public_html/info.php on line 6
+[06-Dec-2016 15:12:24 UTC] PHP Warning:  phpinfo() has been disabled for security reasons in /home/yhrbpfsr/public_html/info.php on line 6
+[15-Dec-2016 17:02:22 UTC] PHP Warning:  phpinfo() has been disabled for security reasons in /home/yhrbpfsr/public_html/info.php on line 6
+[15-Dec-2016 17:03:26 UTC] PHP Fatal error:  Call to undefined function ibase_connect() in /home/yhrbpfsr/public_html/info.php on line 9
+[15-Dec-2016 17:17:59 UTC] PHP Fatal error:  Call to undefined function ibase_connect() in /home/yhrbpfsr/public_html/info.php on line 9
+[15-Dec-2016 17:18:02 UTC] PHP Fatal error:  Call to undefined function ibase_connect() in /home/yhrbpfsr/public_html/info.php on line 9
+[20-Dec-2016 22:30:08 UTC] PHP Fatal error:  Call to undefined function ibase_connect() in /home/yhrbpfsr/public_html/info.php on line 9
