@@ -32,6 +32,57 @@ $( document ).ready( function(){
 	$("input, textarea").keyup(function(){
 		$(this).val( $(this).val().toUpperCase() );
 	});
+
+	$("#rfc").focusout(function() {
+		focus++;
+		window.data = {};
+		var rfc = $("#rfc").val() ? $("#rfc").val() : "&/%&/!/";
+		var commentsRef = firebase.database().ref('users/' + rfc);
+		commentsRef.once('value', function(snap){
+				data = snap.val();
+
+				if(data == null){
+					Materialize.toast('Cliente '+$("#rfc").val()+' no existe, capture todos los datos.', 3000, 'rounded')
+				}
+				else{
+				$("#name").focus();
+				nombreFiscal : $("#name").val(data.nombreFiscal);
+				$("#email").focus();
+				$("#email").focus();
+				email: $("#email").val(data.email);
+				$("#calleynumero").focus();
+				$("#calleynumero").focus();
+				calleynumero : $("#calleynumero").val(data.calleynumero);
+				$("#colonia").focus();
+				$("#colonia").focus();
+				colonia : $("#colonia").val(data.colonia);
+				$("#cp").focus();
+				$("#cp").focus();
+				cp : $("#cp").val(data.cp);
+				$("#municipio").focus();
+				$("#municipio").focus();
+				municipio : $("#municipio").val(data.municipio);
+				$("#estado").focus();
+				$("#estado").focus();
+				estado : $("#estado").val(data.estado);
+				$("#telefono").focus();
+				$("#telefono").focus();
+				telefono : $("#telefono").val(data.telefono);
+				
+				
+					
+						
+						
+						  var a = JSON.stringify(data, null, 2);
+						  console.log(a);
+						  
+						  
+						}
+				});
+			
+			//setTimeout(function(){ window.location.replace("http://www.fixmens.com.mx/facturar.html"); }, 1000);
+		
+  })
 	
 	$(".action").click(function(){
 		
@@ -77,7 +128,7 @@ $( document ).ready( function(){
 				data = snap.val();
 				
 				if(data == null){
-						Materialize.toast('Cliente no '+$("#rfc").val()+' existe ', 3000, 'rounded')
+						Materialize.toast('Cliente '+$("#rfc").val()+' no existe ', 3000, 'rounded')
 					}
 					else{
 						data.ticket = $("#ticket").val()
