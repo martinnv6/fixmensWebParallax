@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="theme-color" content="#4DB6AC">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>Facturar | FixMens</title>
+ <meta name="description" content="Servício de facturación electrónica Fixmens - Facturar"/>
+ <meta name="keywords" content="tecnologia, celulares, telefonos, reparacion, reparación, Reparación de Computadoras, PC, Macbook, mac, reparación de mac, cadereyta, monterrey, san nicolas, guadalupe, juaréz, xbox, ps3, playstation, play station, consola, wii, psp, nintendo, 3ds, cctv, circuito, circuito cerrado, camaras, vigilancia, chip, telcel, movistar, iphone, samsung, galaxy, unefon, iusacell, at&t, desarrollo, aplicaciones, web, android, ios, windows, reparacion de celulares cadereyta, reparación de celulares cadereyta, de celulares monterrey, de celulares nuevo leon, de celulares nuevo león, de chip xbox, de chip xbox cadereyta, de chip wii, de chip psp, reparación de computadoras, reparacion de computadoras, reparacion de computadoras cadereyta, reparación de computadoras cadereyta, de consolas cadereyta, de videojuegos cadereyta, desarrollo de aplicaciones, desarrollo de aplicaciones cadereyta, venta de programas cadereyta, venta de programas, venta de paginas de internet, venta de paginas de internet cadereyta">
+
+<meta http-equiv="Content-Type"content="text/html; charset=windows-1252">
+
+<META NAME="revisit-after" content="14 days">
+
+<META NAME="robots" content="index,follow">
+
+<META NAME="distribution" content="global">
+<script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] ||
+                function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-25912695-2', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="/" class="brand-logo">FixMens</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="http://consultarorden.ddns.net:81">Consultar</a></li>
+        <li><a href="https://www.fixmens.com.mx/cctv.html">CCTV</a></li>
+        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdivDBSfjpTkH_jFYTUGWWBjPop7w_QB_f4B-Bz6aGcfhCZZA/viewform">Encuesta</a></li>
+    <li><a href="https://www.fixmens.com.mx/facturar.html">Facturar</a></li>
+    <li><a href="https://www.fixmens.com.mx/Apps/fixmens.apk">App</a></li>
+    <li><a class="waves-effect jsLogin waves-light btn"><i class="material-icons right">perm_identity</i>Iniciar sesión</a></li>
+    <li><
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+      <li><a href="/"><i style="color: #009688" class="material-icons">business</i>Inicio</a></li>
+        <li><a href="http://consultarorden.ddns.net:81"><i style="color: #009688" class="material-icons">perm_device_information</i>Consultar orden</a></li>
+        <li><a href="https://www.fixmens.com.mx/cctv.html"><i style="color: #009688" class="material-icons">videocam</i>CCTV</a></li>
+        <li><a href="tel:+528282840220"><i style="color: #009688" class="material-icons">call</i>Llamanos</a></li>
+        <li><a href="mailto:atencion@fixmens.com.mx?Subject=Hola%20necesito%20información"><i style="color: #009688" class="material-icons">email</i>Envianos un correo</a></li>
+        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdivDBSfjpTkH_jFYTUGWWBjPop7w_QB_f4B-Bz6aGcfhCZZA/viewform"><i style="color: #009688" class="material-icons">assignment</i>Encuesta de satisfacción</a></li>
+    <li><a href="https://www.fixmens.com.mx/facturar.html"><i style="color: #009688" class="material-icons">library_books</i>Facturar</a></li>
+    <li><a href="https://www.fixmens.com.mx/Apps/fixmens.apk"><i style="color: #009688" class="material-icons">android</i>App</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+
+<div class="container body-content">
+    <div class="progress" style="display: none;">
+        <div class="indeterminate"></div>
+    </div>
+            <h2>ConsultarOrden</h2>
+
+        <div class="row">
+            <form class="col s12 formOrden" id="formOrden">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="orden" type="number" maxlength="5" max="99999" class="validate required" required="" aria-required="true">
+                        <label for="last_name"># Orden</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input maxlength="10" pattern=".{5,10}" placeholder="Cualquier parte de tu nombre o apellido (Min 5 caracteres)" id="nombrein" type="text" class="validate required" required="" aria-required="true">
+                        <label for="first_name">Nombre</label>
+                    </div>
+                    <p>
+                        <input type="checkbox" id="isAdmin" />
+                        <label for="isAdmin">Soy Administrador</label>
+                    </p>
+                    
+                    <div class="hide input-field col s6 divPassword" >
+                        <input  id="adminPassword" type="password">
+                        <label for="password">Password</label>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <a href="#" class="waves-effect waves-light btn jsConsultarOrden" type="submit">Consultar</a>
+                </div>
+                
+                
+            </form>
+
+        </div>
+
+
+        <div id="detalleOrden" style="display: none;">
+         <div class="row">
+                  <div class="input-field col s4">
+                    <input readonly id="CODIGO" type="text" value="">
+                    <label for="infoTecnico">Orden</label>
+                </div>
+                  <div class="input-field col s4">
+                    <input readonly id="EQUIPO" type="text" value="">
+                    <label for="infoTecnico">Equipo</label>
+                </div>
+                 <div class="input-field col s4">
+                    <input readonly id="NS" type="text" value="">
+                    <label for="infoTecnico">IMEI/NS</label>
+                </div>
+                </div>
+                 <div class="row">
+                <div class="input-field col s6">
+                    <input readonly id="COLOR" type="text" value="">
+                    <label for="infoTecnico">Color</label>
+                </div>
+                <div class="input-field col s6">
+                    <input readonly id="ESTADOEQUIPO" type="text" value="">
+                    <label for="infoTecnico">Estado fisico</label>
+                </div>
+                
+                  <div class="input-field col s3">
+                    <input readonly id="NOMBRES" type="text" value="">
+                    <label for="infoTecnico">Nombre</label>
+                 </div>
+                 <div class="input-field col s3">
+                    <input readonly id="TELEFONO" type="text" value="">
+                    <label for="infoTecnico">Teléfono</label>
+                 </div>
+                 <div class="input-field col s3">
+                    <input readonly id="CELULAR" type="text" value="">
+                    <label for="infoTecnico">Celular</label>
+                 </div>
+                 <div class="input-field col s3">
+                    <input readonly id="EMAIL" type="text" value="">
+                    <label for="infoTecnico">Email</label>
+                 </div>
+              </div>
+             <div class="row">
+                  <div class="input-field col s4">
+                    <input readonly id="ESTADO" type="text" value="">
+                    <label for="infoTecnico">Estado</label>
+                </div>
+                  <div class="input-field col s3">
+                    <input readonly id="ENTREGADO" type="checkbox" value="">
+                    <label for="infoTecnico">Entregado</label>
+                </div>
+                
+                  <div class="input-field col s5">
+                    <input readonly id="FECHAUPDATE" type="text" value="">
+                    <label for="infoTecnico">Ultimo cambio</label>
+                 </div>
+              </div>
+              <div class="row">
+            <div class="input-field col s3">
+                <input readonly id="FECHAINGRESO" type="text" value="">
+                <label for="infoTecnico">Ingreso</label>
+            </div>
+            <div class="input-field col s3">
+                <input readonly id="PROMETIDO" type="text" value="">
+                <label for="infoTecnico">Prometido</label>
+            </div>
+            <div class="input-field col s3">
+                <input readonly id="FECHATERMINADO" type="text" value="">
+                <label for="infoTecnico">Terminados</label>
+            </div>
+            <div class="input-field col s3">
+                <input readonly id="FECHAENTREGADO" type="text" value="">
+                <label for="infoTecnico">Entregado</label>
+            </div>
+           
+        </div>
+
+        
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea readonly id="FALLA" class="materialize-textarea">InfoCliente</textarea>
+                <label for="infoCliente">Informe al cliente</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea readonly id="INFORMETALLER" class="materialize-textarea">InfoTecnico</textarea>
+                <label for="infoTecnico">Informe técnico</label>
+            </div>
+        </div>
+
+        <div class="input-field col s6">
+            <input readonly id="TECNICO" type="text" value="">
+            <label for="tecnico">Técnico asignado</label>
+        </div>
+        <div class="input-field col s6">
+            <textarea readonly id="DETALLE" class="materialize-textarea"></textarea>
+            <label for="precio">Presupuesto</label>
+        </div>
+        <div class="input-field col s6">
+            <input readonly id="PRESPUPUESTO" type="text" value="">
+            <label for="precio">Precio servicio</label>
+        </div>
+        </div>
+
+
+
+    <hr/>
+    </body>
+</div>
+        <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Historia</h5>
+          <p class="grey-text text-lighten-4">FixMens es una empresa creada en el año 2009, comenzó como prestadora de serivicio tecnico de telefonía móvil para particulares. Siempre interesada por brindar el mejor servicio y calidad.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Alianzas</h5>
+          <ul>
+            <li><a class="white-text" href="mailto:martin.navarrete@fixmens.com.mx?Subject=Hola%20quiero%20aliarme">Pide ser nuestra alianza</a></li>
+            <li><a class="white-text" href="mailto:martin.navarrete@fixmens.com.mx?Subject=Hola%20quiero%20aliarme">Pide ser nuestra alianza</a></li>
+            <li><a class="white-text" href="mailto:martin.navarrete@fixmens.com.mx?Subject=Hola%20quiero%20aliarme">Pide ser nuestra alianza</a></li>
+            <li><a class="white-text" href="mailto:martin.navarrete@fixmens.com.mx?Subject=Hola%20quiero%20aliarme">Pide ser nuestra alianza</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Contactanos</h5>
+          <ul>
+             <li><a class="white-text" href="tel:+528282840220">828-284-0220</a></li>
+            <li><a class="white-text" href="mailto:atencion@fixmens.com.mx?Subject=Hola%20necesito%20información">atencion@fixmens.com.mx</a></li>
+            <li><a class="white-text" href="mailto:ventas@fixmens.com.mx?Subject=Hola%20necesito%20información">ventas@fixmens.com.mx</a></li>
+            <li><a class="white-text" href="mailto:gerencia@fixmens.com.mx?Subject=Hola%20necesito%20información">gerencia@fixmens.com.mx</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="brown-text text-lighten-3" href="http://www.fixmens.com.mx">FixMens 2017</a>
+      </div>
+    </div>
+  </footer>
+    
+
+
+
+
+
+
+          <!--  Scripts-->
+          <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+          <script src="../js/materialize.js"></script>
+          <script src="../js/init.js"></script>
+          <script src="../js/jquery.loadJSON.js"></script>
+          <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
+          <script src="https://apis.google.com/js/platform.js" async defer></script>
+          <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyBNEetQ1mNYyxyz9JTt1O6VqwH59wqL2pQ",
+            authDomain: "fixmens-b0019.firebaseapp.com",
+            databaseURL: "https://fixmens-b0019.firebaseio.com",
+            storageBucket: "fixmens-b0019.appspot.com",
+            messagingSenderId: "68933222363"
+          };
+          firebase.initializeApp(config);
+        </script>
+  
+</html>

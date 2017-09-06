@@ -3,7 +3,15 @@
 
     $('.button-collapse').sideNav();
     $('.parallax').parallax();
-	
+	$("#isAdmin").click(function() {
+        if($(this).is(":checked")) {
+            $(".divPassword").removeClass("hide");
+        } else {
+            $(".divPassword").addClass("hide");
+        }
+    });
+
+
   });
 
 var user="";
@@ -162,6 +170,77 @@ $( document ).ready( function(){
 			  
 	  });
 	});
+
+	$(".jsConsultarOrden").click(function(event){
+		event.preventDefault();
+		// $.validator.messages.required = ""; //ToDo hacer override para que no choque con materialize
+    $("#detalleOrden").hide(); //Limpiar detalle
+   // if ($(".formOrden :input").valid()) {
+					debugger;
+					var ordenId = $("#orden").val();
+					var nombrein = ($("#nombrein").val()).toLowerCase();
+					var isAdmin = $("#adminPassword").val() == "1123581321";
+
+					var url = "https://fixmensintegration.azurewebsites.net/api/Reparaciones/"+ordenId;
+					$.ajax(url, {
+				      success: function(data) {
+				      	debugger;
+				      	if (data != null && (isAdmin || (data.NOMBRES.toLowerCase().indexOf(nombrein) >= 0)))
+				      	{
+				      		if(!isAdmin){
+				      			data.TELEFONO = "PRIVADO";
+				      			data.CELULAR = "PRIVADO";
+				      			data.EMAIL = "PRIVADO";
+				      			data.NS = "PRIVADO";
+				      			data.NOMBRES = data.NOMBRES.split(' ')[0];
+				      		}
+				      		$("#detalleOrden").show();
+				      		$('#detalleOrden').loadJSON(data) 
+				      		if(data.ENTREGADO == true){
+				      			$("#ENTREGADO").prop('checked','checked')
+				      		}
+				      		else{
+				      			$("#ENTREGADO").prop('checked','')
+				      		}
+
+				      		
+			                Materialize.updateTextFields();
+							$('textarea').trigger('autoresize'); //Ajustar tamaño de textareas  
+				      	}
+				      	else{
+				      		Materialize.toast('Orden '+ordenId+' no encontrada. ', 3000, 'red')	
+
+				      	}
+				         //$('#main').html($(data).find('#main *'));
+				         //$('#notification-bar').text('The page has been successfully loaded');
+				      },
+				      error: function(xhr, textStatus, errorThrown) {
+				         debugger;
+				         Materialize.toast('Ocurrio un error al procesar contactenos para atender su caso. Error: '+ xhr.responseText, 3000, 'red')	  
+				      }
+			   });
+				/*}
+				else{
+					 $(".formOrden :input").each(function () {
+			            if(!($(this).valid()))
+			            $(this).addClass("invalid");
+			        });
+				}*/
+		/*
+		$.ajax({
+		  method: "GET",
+		  type: "GET",
+		  //dataType: 'json',
+		  url: "http://fixmensintegration.azurewebsites.net/api/Reparaciones/"+ordenId ,
+		  //data: data 
+		}).done(function( msg ) {
+			Materialize.toast('Factura del ticket '+$("#ticket").val() +' procesandose espere un correo en maximo 24hrs ', 3000, 'rounded')
+		}).fail( function(xhr, textStatus, errorThrown) {
+			Materialize.toast('Ocurrio un error al procesar contactenos para atender su caso. Error: '+ xhr.responseText, 3000, 'rounded')	  
+			  
+	  });
+	  */
+	});
 	
 	
 })
@@ -173,11 +252,13 @@ $( document ).ready( function(){
   $(document).ajaxStart(function () {
     $(".progress").show();
    $(".modal-footer > a").attr('disabled', 'disabled');
+    $(".jsConsultarOrden").attr('disabled', 'disabled');
 });
 
 $(document).ajaxComplete(function () {
     $(".progress").hide();
     $(".modal-footer > a").removeAttr('disabled');
+    $(".jsConsultarOrden").removeAttr('disabled');
 });
        
 
