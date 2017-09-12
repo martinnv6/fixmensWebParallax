@@ -185,7 +185,7 @@ $( document ).ready( function(){
 					$.ajax(url, {
 				      success: function(data) {
 				      	debugger;
-				      	if (data != null && (isAdmin || (data.NOMBRES.toLowerCase().indexOf(nombrein) >= 0)))
+				      	if (data != null && nombrein.length > 0 && (isAdmin || (data.NOMBRES.toLowerCase().indexOf(nombrein) >= 0)))
 				      	{
 				      		if(!isAdmin){
 				      			data.TELEFONO = "PRIVADO";
