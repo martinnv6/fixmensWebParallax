@@ -3,7 +3,21 @@
 
     $('.button-collapse').sideNav();
     $('.parallax').parallax();
-	
+	$("#isAdmin").click(function() {
+        if($(this).is(":checked")) {
+            $(".divPassword").removeClass("hide");
+        } else {
+            $(".divPassword").addClass("hide");
+        }
+    });
+
+    $(document).keypress(function (e) {
+	    if (e.which == 13) {
+	        $(".jsConsultarOrden").click();
+	    }
+	});
+
+
   });
 
 var user="";
@@ -28,10 +42,72 @@ $( document ).ready( function(){
 		// ...
 		});
 	})
-	
-	$("input, textarea").keyup(function(){
+
+	$('.datepicker').pickadate({
+		selectMonths: true, // Creates a dropdown to control month
+		selectYears: 5, // Creates a dropdown of 15 years to control year,
+		today: 'Today',
+		clear: 'Clear',
+		close: 'Ok',
+		closeOnSelect: true, // Close upon selecting a date,
+		container: undefined, // ex. 'body' will append picker to body
+		format: 'yyyy-mm-dd'    
+	  });
+	/*
+	$("input, textarea:not(#password)").keyup(function(){
 		$(this).val( $(this).val().toUpperCase() );
 	});
+*/
+	$("#rfc").focusout(function() {
+		focus++;
+		window.data = {};
+		var rfc = $("#rfc").val() ? $("#rfc").val() : "&/%&/!/";
+		var commentsRef = firebase.database().ref('users/' + rfc);
+		commentsRef.once('value', function(snap){
+				data = snap.val();
+
+				if(data == null){
+					Materialize.toast('Cliente '+$("#rfc").val()+' no existe, capture todos los datos.', 3000, 'rounded')
+				}
+				else{
+				$("#name").focus();
+				nombreFiscal : $("#name").val(data.nombreFiscal);
+				$("#email").focus();
+				$("#email").focus();
+				email: $("#email").val(data.email);
+				$("#calleynumero").focus();
+				$("#calleynumero").focus();
+				calleynumero : $("#calleynumero").val(data.calleynumero);
+				$("#colonia").focus();
+				$("#colonia").focus();
+				colonia : $("#colonia").val(data.colonia);
+				$("#cp").focus();
+				$("#cp").focus();
+				cp : $("#cp").val(data.cp);
+				$("#municipio").focus();
+				$("#municipio").focus();
+				municipio : $("#municipio").val(data.municipio);
+				$("#estado").focus();
+				$("#estado").focus();
+				estado : $("#estado").val(data.estado);
+				$("#telefono").focus();
+				$("#telefono").focus();
+				telefono : $("#telefono").val(data.telefono);
+				
+				
+					
+						
+						
+						  var a = JSON.stringify(data, null, 2);
+						  console.log(a);
+						  
+						  
+						}
+				});
+			
+			//setTimeout(function(){ window.location.replace("http://www.fixmens.com.mx/facturar.html"); }, 1000);
+		
+  })
 	
 	$(".action").click(function(){
 		
@@ -77,7 +153,7 @@ $( document ).ready( function(){
 				data = snap.val();
 				
 				if(data == null){
-						Materialize.toast('Cliente no '+$("#rfc").val()+' existe ', 3000, 'rounded')
+						Materialize.toast('Cliente '+$("#rfc").val()+' no existe ', 3000, 'rounded')
 					}
 					else{
 						data.ticket = $("#ticket").val()
@@ -111,6 +187,124 @@ $( document ).ready( function(){
 			  
 	  });
 	});
+
+	$(".consultarPemex").click(function(){
+		
+		var usr = $("#user").val();
+		var psw = $("#password").val();
+		var startDate = $("#startDate").val();
+		var endDate = $("#endDate").val();
+		$.ajax({
+		  //method: "GET",
+		  //type: "GET",
+		  //dataType: 'json',
+		  url: "http://robotpemexapi.gear.host/api/Pemex/traficos3218?startDate="+startDate+"&endDate="+endDate+"&usr="+usr+"&psw="+psw
+		 
+		}).done(function( data ) {
+			$("#textbox").val(data);
+			Materialize.toast('Consulta finalizada ', 3000, 'rounded')
+		}).fail( function(xhr, textStatus, errorThrown) {
+			Materialize.toast('Ocurrio un error al procesar contactenos para atender su caso. Error: '+ xhr.responseText, 3000, 'rounded')	  
+			  
+	  });
+	});
+
+	var textFile = null,
+  makeTextFile = function (text) {
+    var data = new Blob([text], {type: 'text/plain'});
+
+    // If we are replacing a previously generated file we need to
+    // manually revoke the object URL to avoid memory leaks.
+    if (textFile !== null) {
+      window.URL.revokeObjectURL(textFile);
+    }
+
+    textFile = window.URL.createObjectURL(data);
+
+    return textFile;
+  };
+
+
+  var create = document.getElementById('create'),
+    textbox = document.getElementById('textbox');
+
+  create.addEventListener('click', function () {
+	var link = document.getElementById('downloadlink');
+	var texto = textbox.value.replace(/\n/g, "\r\n");
+    link.href = makeTextFile(texto);
+    link.style.display = 'block';
+  }, false);
+
+	$(".jsConsultarOrden").click(function(event){
+		event.preventDefault();
+		// $.validator.messages.required = ""; //ToDo hacer override para que no choque con materialize
+    $("#detalleOrden").hide(); //Limpiar detalle
+   // if ($(".formOrden :input").valid()) {
+					debugger;
+					var ordenId = $("#orden").val();
+					var nombrein = ($("#nombrein").val()).toLowerCase();
+					var isAdmin = $("#adminPassword").val() == "1123581321";
+
+					var url = "https://fixmensintegration.azurewebsites.net/api/Reparaciones/"+ordenId;
+					$.ajax(url, {
+				      success: function(data) {
+				      	debugger;
+				      	if (data != null && nombrein.length > 0 && (isAdmin || (data.NOMBRES.toLowerCase().indexOf(nombrein) >= 0)))
+				      	{
+				      		if(!isAdmin){
+				      			data.TELEFONO = "PRIVADO";
+				      			data.CELULAR = "PRIVADO";
+				      			data.EMAIL = "PRIVADO";
+				      			data.NS = "PRIVADO";
+				      			data.NOMBRES = data.NOMBRES.split(' ')[0];
+				      		}
+				      		$("#detalleOrden").show();
+				      		$('#detalleOrden').loadJSON(data) 
+				      		if(data.ENTREGADO == true){
+				      			$("#ENTREGADO").prop('checked','checked')
+				      		}
+				      		else{
+				      			$("#ENTREGADO").prop('checked','')
+				      		}
+
+				      		
+			                Materialize.updateTextFields();
+							$('textarea').trigger('autoresize'); //Ajustar tamaño de textareas  
+				      	}
+				      	else{
+				      		Materialize.toast('Orden '+ordenId+' no encontrada. ', 3000, 'red')	
+
+				      	}
+				         //$('#main').html($(data).find('#main *'));
+				         //$('#notification-bar').text('The page has been successfully loaded');
+				      },
+				      error: function(xhr, textStatus, errorThrown) {
+				         debugger;
+				         Materialize.toast('Ocurrio un error al procesar contactenos para atender su caso. Error: '+ xhr.responseText, 3000, 'red')	  
+				      }
+			   });
+				/*}
+				else{
+					 $(".formOrden :input").each(function () {
+			            if(!($(this).valid()))
+			            $(this).addClass("invalid");
+			        });
+				}*/
+		/*
+		$.ajax({
+		  method: "GET",
+		  type: "GET",
+		  //dataType: 'json',
+		  url: "http://fixmensintegration.azurewebsites.net/api/Reparaciones/"+ordenId ,
+		  //data: data 
+		}).done(function( msg ) {
+			Materialize.toast('Factura del ticket '+$("#ticket").val() +' procesandose espere un correo en maximo 24hrs ', 3000, 'rounded')
+		}).fail( function(xhr, textStatus, errorThrown) {
+			Materialize.toast('Ocurrio un error al procesar contactenos para atender su caso. Error: '+ xhr.responseText, 3000, 'rounded')	  
+			  
+	  });
+	  */
+	});
 	
 	
 })
@@ -122,11 +316,13 @@ $( document ).ready( function(){
   $(document).ajaxStart(function () {
     $(".progress").show();
    $(".modal-footer > a").attr('disabled', 'disabled');
+    $(".jsConsultarOrden").attr('disabled', 'disabled');
 });
 
 $(document).ajaxComplete(function () {
     $(".progress").hide();
     $(".modal-footer > a").removeAttr('disabled');
+    $(".jsConsultarOrden").removeAttr('disabled');
 });
        
 

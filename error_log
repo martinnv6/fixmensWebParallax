@@ -5,3 +5,4 @@
 [15-Dec-2016 17:17:59 UTC] PHP Fatal error:  Call to undefined function ibase_connect() in /home/yhrbpfsr/public_html/info.php on line 9
 [15-Dec-2016 17:18:02 UTC] PHP Fatal error:  Call to undefined function ibase_connect() in /home/yhrbpfsr/public_html/info.php on line 9
 [20-Dec-2016 22:30:08 UTC] PHP Fatal error:  Call to undefined function ibase_connect() in /home/yhrbpfsr/public_html/info.php on line 9
+[28-Nov-2017 17:10:25 UTC] PHP Warning:  phpinfo() has been disabled for security reasons in /home/yhrbpfsr/public_html/phpinfo.php on line 1
